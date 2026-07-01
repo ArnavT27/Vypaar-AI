@@ -19,7 +19,7 @@ import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import billRoutes from './routes/billRoutes.js';
 import customerRoutes from './routes/customerRoutes.js';
-import insightRoutes from './routes/insightRoutes.js';
+
 import storeRoutes from './routes/storeRoutes.js';
 import supplierRoutes from './routes/supplierRoutes.js';
 import insightsRoutes from './routes/insightsRoutes.js';
@@ -71,7 +71,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/bills', billRoutes);
 app.use('/api/customers', customerRoutes);
-app.use('/api/insights', insightRoutes);
+
 app.use('/api/ai-insights', insightsRoutes);
 app.use('/api/predictions', predictionRoutes);
 app.use('/api/trending', trendingRoutes);
