@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Express Backend API
+  backend:
+    image: arnavt27/vypaar-ai-backend:v1
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: vypaar-ai-backend-container
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - CLIENT_URL=http://localhost:8080
+    networks:
+      - app-network
+
+  # React/Vite Frontend (Dev Server)
+  frontend:
+    image: arnavt27/vypaar-ai-frontend:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vypaar-ai-frontend-container
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./.env
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
